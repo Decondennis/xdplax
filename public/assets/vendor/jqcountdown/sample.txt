@@ -1,0 +1,32 @@
+
+
+
+ <script src="js/jqcountdown/js/jquery.plugin.min.js"></script>
+ <script src="js/jqcountdown/js/jquery.countdown.min.js"></script>
+
+
+//javascript counts months from 0, dec = 11
+var d = new Date(
+    <?= $user_rset->SprinterUser->graduation_year ?>, 
+    8,
+    5,
+    18,
+    0,
+    0
+);
+
+
+$("#spt-timer").countdown({
+    until: d, 
+    format: "YODHMS", //YODWHMS
+    onTick: function(periods) {
+
+      var secs = $.countdown.periodsToSeconds(periods);
+
+      if (secs < 1) {
+       
+        //show fund demand button
+      }
+      
+    },
+});
