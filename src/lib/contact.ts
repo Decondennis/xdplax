@@ -15,11 +15,14 @@ export const sendContactMessage = createServerFn({ method: "POST" })
   )
   .handler(async ({ data }) => {
     const body = new URLSearchParams({
-      _subject: data.subject || `New contact message from ${data.name}`,
+      _subject: `[Xdplax.com Contact] ${data.subject || "New Inquiry from " + data.name}`,
       name: data.name,
       email: data.email,
       phone: data.phone,
+      department: data.subject,
       message: data.message,
+      _replyto: data.email,
+      _captcha: "false",
       _template: "table",
     });
 
@@ -28,8 +31,8 @@ export const sendContactMessage = createServerFn({ method: "POST" })
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Accept: "application/json",
-        Origin: data.origin,
-        Referer: `${data.origin}/`,
+        Origin: data.origin || "https://xdplax.com",
+        Referer: `${data.origin || "https://xdplax.com"}/`,
       },
       body,
     });
