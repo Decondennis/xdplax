@@ -1,17 +1,32 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ShieldCheck, Lock, AlertTriangle, ArrowLeft } from "lucide-react";
+import { buildSeoMeta, buildBreadcrumbSchema, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy & Risk Disclosure — Xdplax International" },
-      {
-        name: "description",
-        content:
-          "Privacy policy, data protection standards, and financial risk disclosures for Xdplax International.",
+  head: () =>
+    buildSeoMeta({
+      title: "Privacy Policy & Risk Disclosure — Data Security Standards",
+      description:
+        "Understand how Xdplax International protects user data, adheres to global privacy standards, and discloses risk considerations for foreign exchange market participants.",
+      path: "/privacy",
+      keywords: ["Privacy Policy", "Data Protection GDPR", "Forex Risk Disclosure"],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@graph": [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Privacy Policy", path: "/privacy" },
+          ]),
+          {
+            "@type": "WebPage",
+            "@id": `${SITE_URL}/privacy/#webpage`,
+            url: `${SITE_URL}/privacy`,
+            name: "Privacy Policy & Risk Disclosure — Xdplax International",
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+          },
+        ],
       },
-    ],
-  }),
+    }),
   component: PrivacyPage,
 });
 

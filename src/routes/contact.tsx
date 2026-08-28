@@ -16,19 +16,90 @@ import {
 
 import { sendContactMessage } from "@/lib/contact";
 import logoImg from "@/assets/xdplax/logo.png";
+import { buildSeoMeta, buildBreadcrumbSchema, SITE_URL, COMPANY_DETAILS } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact Us — Xdplax International | Calabar & Global Advisory" },
-      {
-        name: "description",
-        content:
-          "Get in touch with Xdplax International for custom software engineering, enterprise ERP inquiries, Forex Academy enrollment, or FxMint copy trading support.",
+  head: () =>
+    buildSeoMeta({
+      title: "Contact & Consultations — Calabar Head Office & Global Inquiries",
+      description:
+        "Connect with Xdplax International for custom enterprise software development, mobile app engineering, Forex Academy enrollment, or FxMint copy trading consultations.",
+      path: "/contact",
+      keywords: [
+        "Contact Xdplax International",
+        "Software Development Company Calabar Phone Number",
+        "Xdplax Office Address 27 Edgerly Road",
+        "Forex Academy Admission Nigeria",
+        "IT Consultation Cross River State",
+      ],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@graph": [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Contact Us", path: "/contact" },
+          ]),
+          {
+            "@type": "ContactPage",
+            "@id": `${SITE_URL}/contact/#webpage`,
+            url: `${SITE_URL}/contact`,
+            name: "Contact Xdplax International",
+            description:
+              "Connect with Xdplax International for custom enterprise software development, mobile app engineering, Forex Academy enrollment, or FxMint copy trading consultations.",
+            mainEntity: {
+              "@type": "LocalBusiness",
+              name: COMPANY_DETAILS.name,
+              telephone: COMPANY_DETAILS.telephones,
+              email: COMPANY_DETAILS.email,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: COMPANY_DETAILS.address.streetAddress,
+                addressLocality: COMPANY_DETAILS.address.addressLocality,
+                addressRegion: COMPANY_DETAILS.address.addressRegion,
+                addressCountry: COMPANY_DETAILS.address.addressCountry,
+              },
+            },
+          },
+          {
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "Where is Xdplax International headquartered?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Our corporate headquarters is located at 27 Edgerly Road, Calabar, Cross River State, Nigeria. We also operate distributed engineering nodes serving global clients.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How soon will I receive a response to my project inquiry?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Our technical and advisory teams reply to all form submissions and emails within 1 business day. For immediate assistance, you can reach out directly via WhatsApp (+234 706 202 8958).",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How does the free Forex Academy Earn-As-You-Learn program work?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "You can enroll in our foundational trading course completely free by opening and funding your trading account with our verified partner broker.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can I commission a custom ERP or mobile application?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. We offer turnkey development services tailored to your exact industry specifications — complete with discovery, design, development, cloud deployment, and ongoing SLA maintenance.",
+                },
+              },
+            ],
+          },
+        ],
       },
-      { property: "og:title", content: "Contact Us — Xdplax International" },
-    ],
-  }),
+    }),
   component: ContactPage,
 });
 

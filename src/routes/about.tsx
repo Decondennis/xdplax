@@ -23,24 +23,50 @@ import team1 from "@/assets/xdplax/team/team-1.jpg";
 import team2 from "@/assets/xdplax/team/team-2.jpg";
 import team3 from "@/assets/xdplax/team/team-3.jpeg";
 import team4 from "@/assets/xdplax/team/team-4.jpeg";
+import { buildSeoMeta, buildBreadcrumbSchema, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About Us — Xdplax International | Enterprise IT & Forex Powerhouse" },
-      {
-        name: "description",
-        content:
-          "Discover Xdplax International's journey, mission, core values, leadership team, and engineering capabilities delivering global IT solutions and Forex mastery.",
+  head: () =>
+    buildSeoMeta({
+      title: "About Us — Leadership, Innovation & Mission",
+      description:
+        "Learn about Xdplax International's journey, executive leadership, technological vision, and track record in enterprise software engineering and Forex mentorship.",
+      path: "/about",
+      keywords: [
+        "About Xdplax International",
+        "IT Leadership Nigeria",
+        "Tech Hub Calabar Cross River",
+        "Software Engineering Team Nigeria",
+        "Engr Dennis Xdplax",
+        "Forex Mentorship Track Record",
+      ],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@graph": [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "About Us", path: "/about" },
+          ]),
+          {
+            "@type": "AboutPage",
+            "@id": `${SITE_URL}/about/#webpage`,
+            url: `${SITE_URL}/about`,
+            name: "About Xdplax International",
+            description:
+              "Learn about Xdplax International's journey, executive leadership, technological vision, and track record in enterprise software engineering and Forex mentorship.",
+            isPartOf: {
+              "@id": `${SITE_URL}/#website`,
+            },
+            about: {
+              "@id": `${SITE_URL}/#organization`,
+            },
+            mainEntity: {
+              "@id": `${SITE_URL}/#organization`,
+            },
+          },
+        ],
       },
-      { property: "og:title", content: "About Us — Xdplax International" },
-      {
-        property: "og:description",
-        content:
-          "Learn about Xdplax International's multi-disciplinary engineering prowess, proprietary products, and Forex academy.",
-      },
-    ],
-  }),
+    }),
   component: AboutPage,
 });
 

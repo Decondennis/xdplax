@@ -1,31 +1,114 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-const BASE_URL = "https://xdplaxinternational.com";
+const BASE_URL = "https://xdplax.com";
+const CURRENT_DATE = new Date().toISOString().split("T")[0];
+
+interface SitemapEntry {
+  path: string;
+  changefreq: "daily" | "weekly" | "monthly" | "yearly";
+  priority: string;
+  images?: Array<{
+    loc: string;
+    title: string;
+    caption: string;
+  }>;
+}
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const entries = [
-          { path: "/", changefreq: "weekly", priority: "1.0" },
-          { path: "/about", changefreq: "monthly", priority: "0.9" },
-          { path: "/services", changefreq: "weekly", priority: "0.9" },
-          { path: "/products", changefreq: "weekly", priority: "0.9" },
-          { path: "/academy", changefreq: "weekly", priority: "0.9" },
-          { path: "/fxmint", changefreq: "weekly", priority: "0.9" },
-          { path: "/contact", changefreq: "monthly", priority: "0.8" },
-          { path: "/terms", changefreq: "yearly", priority: "0.5" },
-          { path: "/privacy", changefreq: "yearly", priority: "0.5" },
+        const entries: SitemapEntry[] = [
+          {
+            path: "/",
+            changefreq: "weekly",
+            priority: "1.0",
+            images: [
+              {
+                loc: `${BASE_URL}/og-image.png`,
+                title: "Xdplax International Technology and Forex Hub",
+                caption: "Enterprise Software, Forex Academy & FxMint Automated Copier",
+              },
+            ],
+          },
+          {
+            path: "/about",
+            changefreq: "monthly",
+            priority: "0.9",
+            images: [
+              {
+                loc: `${BASE_URL}/favicon.png`,
+                title: "Xdplax International Brand Identity",
+                caption: "About Xdplax International Engineering and Leadership",
+              },
+            ],
+          },
+          {
+            path: "/services",
+            changefreq: "weekly",
+            priority: "0.9",
+          },
+          {
+            path: "/products",
+            changefreq: "weekly",
+            priority: "0.9",
+          },
+          {
+            path: "/academy",
+            changefreq: "weekly",
+            priority: "0.9",
+          },
+          {
+            path: "/fxmint",
+            changefreq: "weekly",
+            priority: "0.9",
+          },
+          {
+            path: "/contact",
+            changefreq: "monthly",
+            priority: "0.8",
+          },
+          {
+            path: "/terms",
+            changefreq: "yearly",
+            priority: "0.5",
+          },
+          {
+            path: "/privacy",
+            changefreq: "yearly",
+            priority: "0.5",
+          },
         ];
-        const urls = entries.map(
-          (e) =>
-            `  <url>\n    <loc>${BASE_URL}${e.path}</loc>\n    <changefreq>${e.changefreq}</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`,
-        );
-        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>`;
+
+        const urls = entries.map((e) => {
+          const imageTags = (e.images || [])
+            .map(
+              (img) => `    <image:image>
+      <image:loc>${img.loc}</image:loc>
+      <image:title>${img.title}</image:title>
+      <image:caption>${img.caption}</image:caption>
+    </image:image>`,
+            )
+            .join("\n");
+
+          return `  <url>
+    <loc>${BASE_URL}${e.path}</loc>
+    <lastmod>${CURRENT_DATE}</lastmod>
+    <changefreq>${e.changefreq}</changefreq>
+    <priority>${e.priority}</priority>
+${imageTags ? `${imageTags}\n` : ""}  </url>`;
+        });
+
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${urls.join("\n")}
+</urlset>`;
+
         return new Response(xml, {
           headers: {
-            "Content-Type": "application/xml",
-            "Cache-Control": "public, max-age=3600",
+            "Content-Type": "application/xml; charset=utf-8",
+            "Cache-Control": "public, max-age=3600, s-maxage=86400",
           },
         });
       },

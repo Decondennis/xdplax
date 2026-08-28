@@ -38,18 +38,108 @@ import team3 from "@/assets/xdplax/team/team-3.jpeg";
 import team4 from "@/assets/xdplax/team/team-4.jpeg";
 
 import { ENABLED_PRODUCTS } from "@/lib/products";
+import { buildSeoMeta, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { property: "og:url", content: "/" },
-      { property: "og:type", content: "website" },
-      {
-        title: "Xdplax International — Premier IT, Forex Academy & Enterprise Software Development",
+  head: () =>
+    buildSeoMeta({
+      title: "Enterprise Software, IT Solutions & Forex Academy",
+      description:
+        "Xdplax International delivers high-performance enterprise software development, mobile & web applications, ERP/CRM engineering, AI analytics, Forex Academy, and FxMint automated copy trading.",
+      path: "/",
+      keywords: [
+        "Software Development Company Nigeria",
+        "Top IT Firm Calabar",
+        "Custom Software Engineering Africa",
+        "Best Forex Academy Nigeria",
+        "FxMint Automated Copy Trading",
+        "FinTech Development Nigeria",
+        "EdTech Software EduStow",
+        "Women Safety App PlaySafe",
+      ],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": `${SITE_URL}/#webpage`,
+        url: SITE_URL,
+        name: "Xdplax International — Enterprise Software, IT Solutions & Forex Academy",
+        description:
+          "Enterprise Software Engineering, Responsive Web & Mobile Apps, CRM/ERP, AI/ML, Forex Academy, and FxMint Automated Copier.",
+        isPartOf: {
+          "@id": `${SITE_URL}/#website`,
+        },
+        about: {
+          "@id": `${SITE_URL}/#organization`,
+        },
+        mainEntity: {
+          "@type": "OfferCatalog",
+          name: "Xdplax International Services & Products",
+          itemListElement: [
+            {
+              "@type": "OfferCatalog",
+              name: "Software Engineering Services",
+              itemListElement: [
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Custom Responsive Web Development",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Native & Cross-Platform Mobile Apps",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Enterprise ERP & CRM Platforms",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "AI & Big Data Analytics",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Cybersecurity & Cloud Hardening",
+                  },
+                },
+              ],
+            },
+            {
+              "@type": "OfferCatalog",
+              name: "Financial Education & Copy Trading",
+              itemListElement: [
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Xdplax Forex Academy",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "FxMint Traders Circle Copy Trading",
+                  },
+                },
+              ],
+            },
+          ],
+        },
       },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
+    }),
   component: HomePage,
 });
 

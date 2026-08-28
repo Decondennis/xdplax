@@ -18,18 +18,42 @@ import slide3 from "@/assets/xdplax/slide-3.jpg";
 import team2 from "@/assets/xdplax/team/team-2.jpg";
 import logoImg from "@/assets/xdplax/logo.png";
 
+import { buildSeoMeta, buildBreadcrumbSchema, SITE_URL } from "@/lib/seo";
+
 export const Route = createFileRoute("/fxmint")({
-  head: () => ({
-    meta: [
-      { title: "FxMint Traders Circle — Xdplax International | Automated Copy Trading" },
-      {
-        name: "description",
-        content:
-          "Join FxMint Traders Circle by Xdplax International. Professional Forex copy trading with zero upfront fees, strict risk controls, and automated MetaTrader copier.",
+  head: () =>
+    buildSeoMeta({
+      title: "FxMint Traders Circle — Automated Forex Copy Trading System",
+      description:
+        "Mirror institutional Forex trades in real-time with FxMint Traders Circle. Zero upfront subscription fee, performance profit-sharing model, automated MT4/MT5 trade execution, and non-custodial capital security.",
+      path: "/fxmint",
+      keywords: [
+        "FxMint Copy Trading",
+        "Forex Trade Copier Nigeria",
+        "Automated MetaTrader Copier",
+        "Passive Forex Investment",
+        "Non Custodial Copy Trading",
+        "Smart Money Trade Signals",
+      ],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@graph": [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "FxMint Traders Circle", path: "/fxmint" },
+          ]),
+          {
+            "@type": "FinancialProduct",
+            name: "FxMint Traders Circle",
+            description:
+              "Automated trade copying technology mirroring institutional trades executed by Xdplax senior market analysts directly onto subscriber MT4/MT5 accounts.",
+            provider: { "@id": `${SITE_URL}/#organization` },
+            feesAndCommissionsSpecification:
+              "Zero upfront activation fee; high-watermark profit-sharing model applied only on profitable trading weeks.",
+          },
+        ],
       },
-      { property: "og:title", content: "FxMint Traders Circle — Xdplax International" },
-    ],
-  }),
+    }),
   component: FxMintPage,
 });
 

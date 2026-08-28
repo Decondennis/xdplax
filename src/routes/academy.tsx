@@ -19,19 +19,60 @@ import slide2 from "@/assets/xdplax/slide-2.jpg";
 import slide3 from "@/assets/xdplax/slide-3.jpg";
 import team1 from "@/assets/xdplax/team/team-1.jpg";
 import logoImg from "@/assets/xdplax/logo.png";
+import { buildSeoMeta, buildBreadcrumbSchema, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/academy")({
-  head: () => ({
-    meta: [
-      { title: "Forex Academy — Xdplax International | Professional FX Trading Mastery" },
-      {
-        name: "description",
-        content:
-          "Master Forex trading with Xdplax International Forex Academy. Free Earn-As-You-Learn course, technical & fundamental analysis, live mentorship, and risk management.",
+  head: () =>
+    buildSeoMeta({
+      title: "Forex Academy — Professional FX Trading Education & Live Mentorship",
+      description:
+        "Master the foreign exchange market with Xdplax Forex Academy. Comprehensive 3-tier curriculum covering Forex fundamentals, institutional Smart Money Concepts (SMC), and advanced risk psychology with live trading desk access.",
+      path: "/academy",
+      keywords: [
+        "Forex Academy Nigeria",
+        "Learn Forex Trading Calabar",
+        "Smart Money Concepts Course",
+        "Earn As You Learn Forex",
+        "MetaTrader 4 MT5 Mentorship",
+        "Institutional FX Strategy",
+      ],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@graph": [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Forex Academy", path: "/academy" },
+          ]),
+          {
+            "@type": "Course",
+            name: "Forex Fundamentals & Market Mechanics",
+            description:
+              "Foundational training into currency pair movements, pip valuations, margin calculations, and professional MetaTrader 4/5 setup.",
+            provider: { "@id": `${SITE_URL}/#organization` },
+            educationalCredentialAwarded: "Certificate of Fundamental Competency",
+            isAccessibleForFree: true,
+          },
+          {
+            "@type": "Course",
+            name: "Technical Analysis & Smart Money Concepts (SMC)",
+            description:
+              "Institutional order blocks, liquidity sweeps, fair value gaps (FVG), multi-timeframe top-down market structure, and Fibonacci confluence.",
+            provider: { "@id": `${SITE_URL}/#organization` },
+            educationalCredentialAwarded: "Certificate of Technical Analysis",
+            isAccessibleForFree: false,
+          },
+          {
+            "@type": "Course",
+            name: "Risk Management, Trading Psychology & Live Room",
+            description:
+              "Mastering mathematical risk-of-ruin models, high-probability execution psychology, prop firm funding preparation, and live daily market breakdowns.",
+            provider: { "@id": `${SITE_URL}/#organization` },
+            educationalCredentialAwarded: "Master Trader Certification",
+            isAccessibleForFree: false,
+          },
+        ],
       },
-      { property: "og:title", content: "Forex Academy — Xdplax International" },
-    ],
-  }),
+    }),
   component: AcademyPage,
 });
 

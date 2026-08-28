@@ -23,19 +23,78 @@ import slide5 from "@/assets/xdplax/slide-5.jpg";
 import team3 from "@/assets/xdplax/team/team-3.jpeg";
 import team4 from "@/assets/xdplax/team/team-4.jpeg";
 import logoImg from "@/assets/xdplax/logo.png";
+import { buildSeoMeta, buildBreadcrumbSchema, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/services")({
-  head: () => ({
-    meta: [
-      { title: "Enterprise Services — Xdplax International | Software, Cloud & AI" },
-      {
-        name: "description",
-        content:
-          "Explore Xdplax International's end-to-end technology services: custom responsive web development, mobile apps, desktop software, ERP/CRM, AI/ML data analytics, and cybersecurity.",
+  head: () =>
+    buildSeoMeta({
+      title: "Enterprise Services — Software, Mobile, Cloud & AI Engineering",
+      description:
+        "Comprehensive technology engineering: Custom responsive web development, native/cross-platform iOS & Android mobile apps, desktop systems, CRM/ERP platforms, AI/ML analytics, and cybersecurity.",
+      path: "/services",
+      keywords: [
+        "Enterprise Software Development Nigeria",
+        "Web Application Development Services",
+        "Mobile App Development iOS Android",
+        "Custom ERP CRM Development",
+        "AI Machine Learning Consulting",
+        "Cybersecurity Cloud Hardening",
+      ],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@graph": [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+          ]),
+          {
+            "@type": "Service",
+            "@id": `${SITE_URL}/services/#web-dev`,
+            name: "Custom Responsive Web Development",
+            serviceType: "Web Engineering",
+            provider: { "@id": `${SITE_URL}/#organization` },
+            description:
+              "High-throughput progressive web applications, single-page architectures, enterprise portals, and SaaS platforms built on React, TypeScript, and modern SSR stacks.",
+          },
+          {
+            "@type": "Service",
+            "@id": `${SITE_URL}/services/#mobile-apps`,
+            name: "Mobile App Development (iOS & Android)",
+            serviceType: "Mobile Engineering",
+            provider: { "@id": `${SITE_URL}/#organization` },
+            description:
+              "Cross-platform and native mobile apps engineered for fluid performance, offline data synchronization, biometric authentication, and enterprise integrations.",
+          },
+          {
+            "@type": "Service",
+            "@id": `${SITE_URL}/services/#erp-crm`,
+            name: "Enterprise ERP & CRM Platforms",
+            serviceType: "Enterprise Software",
+            provider: { "@id": `${SITE_URL}/#organization` },
+            description:
+              "Custom automated ERP/CRM suites with multi-warehouse inventory, accounting engines, automated payroll, customer lifecycle tracking, and point-of-sale systems.",
+          },
+          {
+            "@type": "Service",
+            "@id": `${SITE_URL}/services/#ai-ml`,
+            name: "AI & Big Data Analytics",
+            serviceType: "Artificial Intelligence",
+            provider: { "@id": `${SITE_URL}/#organization` },
+            description:
+              "Predictive data modeling, machine learning workflows, automated natural language processing, and interactive business intelligence dashboards.",
+          },
+          {
+            "@type": "Service",
+            "@id": `${SITE_URL}/services/#cybersecurity`,
+            name: "Cybersecurity & Cloud Infrastructure",
+            serviceType: "Information Security",
+            provider: { "@id": `${SITE_URL}/#organization` },
+            description:
+              "End-to-end vulnerability scanning, automated penetration testing, zero-trust cloud network architecture, and regulatory data compliance.",
+          },
+        ],
       },
-      { property: "og:title", content: "Enterprise Services — Xdplax International" },
-    ],
-  }),
+    }),
   component: ServicesPage,
 });
 

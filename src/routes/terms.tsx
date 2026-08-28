@@ -1,17 +1,32 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ShieldCheck, FileText, ArrowLeft } from "lucide-react";
+import { buildSeoMeta, buildBreadcrumbSchema, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({
-    meta: [
-      { title: "Terms and Conditions — Xdplax International" },
-      {
-        name: "description",
-        content:
-          "Terms of service and legal agreement governing the use of Xdplax International websites, applications, and services.",
+  head: () =>
+    buildSeoMeta({
+      title: "Terms and Conditions — Legal Agreements & Service Terms",
+      description:
+        "Review the terms of service, intellectual property guidelines, client agreements, and financial risk disclosures governing Xdplax International.",
+      path: "/terms",
+      keywords: ["Terms and Conditions", "Xdplax Legal Policy", "Forex Risk Disclaimer"],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@graph": [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Terms and Conditions", path: "/terms" },
+          ]),
+          {
+            "@type": "WebPage",
+            "@id": `${SITE_URL}/terms/#webpage`,
+            url: `${SITE_URL}/terms`,
+            name: "Terms and Conditions — Xdplax International",
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+          },
+        ],
       },
-    ],
-  }),
+    }),
   component: TermsPage,
 });
 

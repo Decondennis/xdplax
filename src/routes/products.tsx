@@ -20,19 +20,78 @@ import { ENABLED_PRODUCTS } from "@/lib/products";
 import slide4 from "@/assets/xdplax/slide-4.jpg";
 import slide5 from "@/assets/xdplax/slide-5.jpg";
 import logoImg from "@/assets/xdplax/logo.png";
+import { buildSeoMeta, buildBreadcrumbSchema, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/products")({
-  head: () => ({
-    meta: [
-      { title: "Products & Initiatives — Xdplax International | Proprietary Tech" },
-      {
-        name: "description",
-        content:
-          "Discover Xdplax International's portfolio of proprietary products: XDFastComm, EduStow, PlaySafe, QuickSales, BizKit, and DreamPropellers.",
+  head: () =>
+    buildSeoMeta({
+      title: "Proprietary Products & Innovations — FinTech, EdTech & HealthTech",
+      description:
+        "Explore Xdplax International's flagship platforms: XDFastComm (FinTech/Recharge API), EduStow (School Management LMS), PlaySafe (Women's Health & Ovulation tracker), QuickSales POS, BizKit, and DreamPropellers.",
+      path: "/products",
+      keywords: [
+        "XDFastComm FinTech API",
+        "EduStow School Management Software",
+        "PlaySafe Period and Ovulation Tracker",
+        "QuickSales Point of Sale POS",
+        "BizKit Small Business Accounting",
+        "DreamPropellers Community Platform",
+      ],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@graph": [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Products", path: "/products" },
+          ]),
+          {
+            "@type": "SoftwareApplication",
+            name: "XDFastComm",
+            operatingSystem: "Web, Cloud API, Android",
+            applicationCategory: "FinanceApplication",
+            publisher: { "@id": `${SITE_URL}/#organization` },
+            description:
+              "Institutional FinTech platform providing automated utility, airtime, data bundle distribution, and virtual account funding with sub-second API execution.",
+          },
+          {
+            "@type": "SoftwareApplication",
+            name: "EduStow",
+            operatingSystem: "Web, Cloud, Android, iOS",
+            applicationCategory: "EducationalApplication",
+            publisher: { "@id": `${SITE_URL}/#organization` },
+            description:
+              "Comprehensive school administration suite with automated grading, CBT examination engine, tuition invoicing, and parent-teacher communication portals.",
+          },
+          {
+            "@type": "SoftwareApplication",
+            name: "PlaySafe",
+            operatingSystem: "Android, iOS, Web",
+            applicationCategory: "HealthAndFitnessApplication",
+            publisher: { "@id": `${SITE_URL}/#organization` },
+            description:
+              "AI-driven women's wellness companion offering precise menstrual cycle tracking, fertile window prediction, symptom logging, and discrete emergency safety SOS alerts.",
+          },
+          {
+            "@type": "SoftwareApplication",
+            name: "QuickSales",
+            operatingSystem: "Windows, Web, POS Terminals",
+            applicationCategory: "BusinessApplication",
+            publisher: { "@id": `${SITE_URL}/#organization` },
+            description:
+              "Fast-paced retail point-of-sale system featuring offline-first receipt printing, multi-store stock audits, low inventory alerts, and daily sales reconciliations.",
+          },
+          {
+            "@type": "SoftwareApplication",
+            name: "DreamPropellers",
+            operatingSystem: "Web",
+            applicationCategory: "CommunityPlatform",
+            publisher: { "@id": `${SITE_URL}/#organization` },
+            description:
+              "Youth empowerment, digital skill incubation, and social development initiative by Xdplax International.",
+          },
+        ],
       },
-      { property: "og:title", content: "Products & Initiatives — Xdplax International" },
-    ],
-  }),
+    }),
   component: ProductsPage,
 });
 
