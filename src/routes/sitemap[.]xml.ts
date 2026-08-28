@@ -3,6 +3,15 @@ import { createFileRoute } from "@tanstack/react-router";
 const BASE_URL = "https://xdplax.com";
 const CURRENT_DATE = new Date().toISOString().split("T")[0];
 
+function escapeXml(unsafe: string): string {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
 interface SitemapEntry {
   path: string;
   changefreq: "daily" | "weekly" | "monthly" | "yearly";
@@ -27,7 +36,7 @@ export const Route = createFileRoute("/sitemap.xml")({
               {
                 loc: `${BASE_URL}/og-image.png`,
                 title: "Xdplax International Technology and Forex Hub",
-                caption: "Enterprise Software, Forex Academy & FxMint Automated Copier",
+                caption: "Enterprise Software, Forex Academy and FxMint Automated Copier",
               },
             ],
           },
@@ -84,15 +93,15 @@ export const Route = createFileRoute("/sitemap.xml")({
           const imageTags = (e.images || [])
             .map(
               (img) => `    <image:image>
-      <image:loc>${img.loc}</image:loc>
-      <image:title>${img.title}</image:title>
-      <image:caption>${img.caption}</image:caption>
+      <image:loc>${escapeXml(img.loc)}</image:loc>
+      <image:title>${escapeXml(img.title)}</image:title>
+      <image:caption>${escapeXml(img.caption)}</image:caption>
     </image:image>`,
             )
             .join("\n");
 
           return `  <url>
-    <loc>${BASE_URL}${e.path}</loc>
+    <loc>${escapeXml(`${BASE_URL}${e.path}`)}</loc>
     <lastmod>${CURRENT_DATE}</lastmod>
     <changefreq>${e.changefreq}</changefreq>
     <priority>${e.priority}</priority>
