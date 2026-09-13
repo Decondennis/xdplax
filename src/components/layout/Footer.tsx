@@ -222,6 +222,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/blog" className="hover:text-primary transition-colors font-semibold text-primary">
+                  Tech Journal &amp; Insights
+                </Link>
+              </li>
+              <li>
                 <Link to="/about" className="hover:text-primary transition-colors">
                   About Xdplax Int&apos;l
                 </Link>
@@ -232,7 +237,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="hover:text-primary transition-colors">
+                <Link to="/blog" className="hover:text-foreground transition-colors font-semibold">Tech Journal</Link>
+            <Link to="/terms" className="hover:text-primary transition-colors">
                   Terms &amp; Conditions
                 </Link>
               </li>
@@ -249,6 +255,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} Xdplax International. All rights reserved.</p>
           <div className="flex items-center gap-6">
+            <Link to="/blog" className="hover:text-foreground transition-colors font-semibold">Tech Journal</Link>
             <Link to="/terms" className="hover:text-foreground transition-colors">
               Terms of Service
             </Link>

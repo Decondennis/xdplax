@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { BLOG_POSTS } from "@/data/blogPosts";
 
 const BASE_URL = "https://xdplax.com";
 const CURRENT_DATE = new Date().toISOString().split("T")[0];
@@ -16,6 +17,7 @@ interface SitemapEntry {
   path: string;
   changefreq: "daily" | "weekly" | "monthly" | "yearly";
   priority: string;
+  lastmod?: string;
   images?: Array<{
     loc: string;
     title: string;
@@ -27,7 +29,7 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const entries: SitemapEntry[] = [
+        const coreEntries: SitemapEntry[] = [
           {
             path: "/",
             changefreq: "weekly",
@@ -39,6 +41,11 @@ export const Route = createFileRoute("/sitemap.xml")({
                 caption: "Enterprise Software, Forex Academy and FxMint Automated Copier",
               },
             ],
+          },
+          {
+            path: "/blog",
+            changefreq: "daily",
+            priority: "0.95",
           },
           {
             path: "/about",
@@ -65,12 +72,12 @@ export const Route = createFileRoute("/sitemap.xml")({
           {
             path: "/academy",
             changefreq: "weekly",
-            priority: "0.9",
+            priority: "0.85",
           },
           {
             path: "/fxmint",
             changefreq: "weekly",
-            priority: "0.9",
+            priority: "0.85",
           },
           {
             path: "/contact",
@@ -84,12 +91,22 @@ export const Route = createFileRoute("/sitemap.xml")({
           },
           {
             path: "/privacy",
-            changefreq: "yearly",
-            priority: "0.5",
+            changefreq: "monthly",
+            priority: "0.6",
           },
         ];
 
-        const urls = entries.map((e) => {
+        // Map all blog publication entries
+        const blogEntries: SitemapEntry[] = BLOG_POSTS.map((post) => ({
+          path: `/blog/${post.slug}`,
+          changefreq: "weekly" as const,
+          priority: "0.8",
+          lastmod: post.publishedAt,
+        }));
+
+        const allEntries = [...coreEntries, ...blogEntries];
+
+        const urls = allEntries.map((e) => {
           const imageTags = (e.images || [])
             .map(
               (img) => `    <image:image>
@@ -102,7 +119,7 @@ export const Route = createFileRoute("/sitemap.xml")({
 
           return `  <url>
     <loc>${escapeXml(`${BASE_URL}${e.path}`)}</loc>
-    <lastmod>${CURRENT_DATE}</lastmod>
+    <lastmod>${e.lastmod || CURRENT_DATE}</lastmod>
     <changefreq>${e.changefreq}</changefreq>
     <priority>${e.priority}</priority>
 ${imageTags ? `${imageTags}\n` : ""}  </url>`;

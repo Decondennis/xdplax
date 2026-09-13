@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { to: "/about", label: "About Us" },
   { to: "/services", label: "Services" },
   { to: "/products", label: "Products & Initiatives" },
+  { to: "/blog", label: "Insights & Blog" },
   { to: "/academy", label: "Forex Academy" },
   { to: "/fxmint", label: "FxMint" },
   { to: "/contact", label: "Contact" },
