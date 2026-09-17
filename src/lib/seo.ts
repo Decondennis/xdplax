@@ -9,7 +9,7 @@ export const COMPANY_DETAILS = {
   logo: `${SITE_URL}/favicon.png`,
   description:
     "Global technology powerhouse and financial education provider offering custom enterprise software engineering, mobile apps, ERP/CRM platforms, AI analytics, cybersecurity, Forex Academy, and FxMint automated copy trading.",
-  email: "info@xdplaxInternational.com",
+  email: "info@xdplax.com",
   telephones: ["+234 706 202 8958", "+234 81 265 73209"],
   address: {
     streetAddress: "27 Edgerly Road",

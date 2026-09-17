@@ -131,10 +131,10 @@ function TermsPage() {
               <br />
               Email:{" "}
               <a
-                href="mailto:info@xdplaxInternational.com"
+                href="mailto:info@xdplax.com"
                 className="text-primary hover:underline"
               >
-                info@xdplaxInternational.com
+                info@xdplax.com
               </a>
             </p>
           </section>

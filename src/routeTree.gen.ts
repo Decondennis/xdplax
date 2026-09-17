@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AcademyRouteImport } from './routes/academy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FxmintRouteImport } from './routes/fxmint'
+import { Route as Googleed871dcfc5b2265aDothtmlRouteImport } from './routes/googleed871dcfc5b2265a[.]html'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -47,6 +48,12 @@ const FxmintRoute = FxmintRouteImport.update({
   path: '/fxmint',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Googleed871dcfc5b2265aDothtmlRoute =
+  Googleed871dcfc5b2265aDothtmlRouteImport.update({
+    id: '/googleed871dcfc5b2265a.html',
+    path: '/googleed871dcfc5b2265a.html',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -89,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/academy': typeof AcademyRoute
   '/contact': typeof ContactRoute
   '/fxmint': typeof FxmintRoute
+  '/googleed871dcfc5b2265a.html': typeof Googleed871dcfc5b2265aDothtmlRoute
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
   '/services': typeof ServicesRoute
@@ -103,6 +111,7 @@ export interface FileRoutesByTo {
   '/academy': typeof AcademyRoute
   '/contact': typeof ContactRoute
   '/fxmint': typeof FxmintRoute
+  '/googleed871dcfc5b2265a.html': typeof Googleed871dcfc5b2265aDothtmlRoute
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
   '/services': typeof ServicesRoute
@@ -118,6 +127,7 @@ export interface FileRoutesById {
   '/academy': typeof AcademyRoute
   '/contact': typeof ContactRoute
   '/fxmint': typeof FxmintRoute
+  '/googleed871dcfc5b2265a.html': typeof Googleed871dcfc5b2265aDothtmlRoute
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
   '/services': typeof ServicesRoute
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
     | '/academy'
     | '/contact'
     | '/fxmint'
+    | '/googleed871dcfc5b2265a.html'
     | '/privacy'
     | '/products'
     | '/services'
@@ -148,6 +159,7 @@ export interface FileRouteTypes {
     | '/academy'
     | '/contact'
     | '/fxmint'
+    | '/googleed871dcfc5b2265a.html'
     | '/privacy'
     | '/products'
     | '/services'
@@ -162,6 +174,7 @@ export interface FileRouteTypes {
     | '/academy'
     | '/contact'
     | '/fxmint'
+    | '/googleed871dcfc5b2265a.html'
     | '/privacy'
     | '/products'
     | '/services'
@@ -177,6 +190,7 @@ export interface RootRouteChildren {
   AcademyRoute: typeof AcademyRoute
   ContactRoute: typeof ContactRoute
   FxmintRoute: typeof FxmintRoute
+  Googleed871dcfc5b2265aDothtmlRoute: typeof Googleed871dcfc5b2265aDothtmlRoute
   PrivacyRoute: typeof PrivacyRoute
   ProductsRoute: typeof ProductsRoute
   ServicesRoute: typeof ServicesRoute
@@ -221,6 +235,13 @@ declare module '@tanstack/react-router' {
       path: '/fxmint'
       fullPath: '/fxmint'
       preLoaderRoute: typeof FxmintRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/googleed871dcfc5b2265a.html': {
+      id: '/googleed871dcfc5b2265a.html'
+      path: '/googleed871dcfc5b2265a.html'
+      fullPath: '/googleed871dcfc5b2265a.html'
+      preLoaderRoute: typeof Googleed871dcfc5b2265aDothtmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -281,6 +302,7 @@ const rootRouteChildren: RootRouteChildren = {
   AcademyRoute: AcademyRoute,
   ContactRoute: ContactRoute,
   FxmintRoute: FxmintRoute,
+  Googleed871dcfc5b2265aDothtmlRoute: Googleed871dcfc5b2265aDothtmlRoute,
   PrivacyRoute: PrivacyRoute,
   ProductsRoute: ProductsRoute,
   ServicesRoute: ServicesRoute,

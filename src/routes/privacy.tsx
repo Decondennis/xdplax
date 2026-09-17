@@ -198,10 +198,10 @@ function PrivacyPage() {
               <br />
               <strong>Email:</strong>{" "}
               <a
-                href="mailto:info@xdplaxInternational.com"
+                href="mailto:info@xdplax.com"
                 className="text-primary hover:underline font-semibold"
               >
-                info@xdplaxInternational.com
+                info@xdplax.com
               </a>
               <br />
               <strong>Office:</strong> 27 Edgerly Road, Calabar, Cross River State, Nigeria
