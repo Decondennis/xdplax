@@ -96,10 +96,10 @@ export function Footer() {
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-accent shrink-0" />
                 <a
-                  href="mailto:info@xdplaxInternational.com"
+                  href="mailto:info@xdplax.com"
                   className="hover:text-foreground transition-colors"
                 >
-                  info@xdplaxInternational.com
+                  info@xdplax.com
                 </a>
               </div>
               <div className="flex items-center gap-2.5">

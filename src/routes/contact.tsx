@@ -254,18 +254,18 @@ function ContactPage() {
                       <div className="space-y-0.5 mt-1 text-sm font-semibold text-foreground">
                         <p>
                           <a
-                            href="mailto:info@xdplaxInternational.com"
+                            href="mailto:info@xdplax.com"
                             className="hover:text-primary transition-colors"
                           >
-                            info@xdplaxInternational.com
+                            info@xdplax.com
                           </a>
                         </p>
                         <p>
                           <a
-                            href="mailto:contact@xdplaxInternational.com"
+                            href="mailto:contact@xdplax.com"
                             className="hover:text-primary transition-colors"
                           >
-                            contact@xdplaxInternational.com
+                            contact@xdplax.com
                           </a>
                         </p>
                       </div>
