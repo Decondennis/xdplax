@@ -113,6 +113,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "bingbot",
         content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       },
+      {
+        name: "google-site-verification",
+        content: "googleed871dcfc5b2265a",
+      },
       // Geographic Metadata
       { name: "geo.region", content: "NG-CR" },
       { name: "geo.placename", content: "Calabar, Cross River State, Nigeria" },
